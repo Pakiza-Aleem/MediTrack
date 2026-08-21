@@ -174,25 +174,25 @@ The project focuses on **secure authentication, authorization, session persisten
 ### 🔑 Login Screen
 
 <p align="center">
-  <img src="screenshots/login.png" alt="Medi Track Login Screen" width="850"/>
+  <img src="screenshots/Screenshot%202026-08-21%20195121.png" alt="Medi Track Login Screen" width="850"/>
 </p>
 
 ### 📝 Registration Screen
 
 <p align="center">
-  <img src="screenshots/register.png" alt="Medi Track Registration Screen" width="850"/>
+  <img src="screenshots/Screenshot%202026-08-21%20195134.png" alt="Medi Track Registration Screen" width="850"/>
 </p>
 
 ### 📅 My Appointments
 
 <p align="center">
-  <img src="screenshots/my-appointments.png" alt="Medi Track My Appointments" width="850"/>
+  <img src="screenshots/Screenshot%202026-08-21%20195250.png" alt="Medi Track My Appointments" width="850"/>
 </p>
 
 ### 👨‍⚕️ Staff Dashboard
 
 <p align="center">
-  <img src="screenshots/staff-dashboard.png" alt="Medi Track Staff Dashboard" width="850"/>
+  <img src="screenshots/Screenshot%202026-08-21%20195438.png" alt="Medi Track Staff Dashboard" width="850"/>
 </p>
 
 ---
