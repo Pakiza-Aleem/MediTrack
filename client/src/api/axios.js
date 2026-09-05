@@ -6,7 +6,7 @@ import axios from "axios";
  * browser will neither send nor store the auth cookie.
  */
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_API_URL,
 
   // TODO (Task 5.1): withCredentials: true
   withCredentials: true,
