@@ -22,12 +22,15 @@ app.use(cookieParser());
 // credentials: true is needed when using cookies for authentication
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: [
+      "http://localhost:5173",
+      "https://medi-track-client-pi.vercel.app",
+    ],
     credentials: true,
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type"],
   })
 );
-
-
 // ==================== DATABASE ====================
 
 // Connect to MongoDB Atlas
