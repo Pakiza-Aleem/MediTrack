@@ -8,18 +8,10 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
-
 // ==================== MIDDLEWARE ====================
-
-// Allows Express to read JSON data from requests
-// Example: req.body.email, req.body.password
 app.use(express.json());
-
-// Allows us to read cookies from requests
 app.use(cookieParser());
 
-// Allows the React frontend to communicate with this backend
-// credentials: true is needed when using cookies for authentication
 app.use(
   cors({
     origin: [
@@ -31,25 +23,18 @@ app.use(
     allowedHeaders: ["Content-Type"],
   })
 );
-// ==================== DATABASE ====================
 
-// Connect to MongoDB Atlas
-// MONGODB_URI is stored in .env and will be added to Vercel later
+// ==================== DATABASE ====================
 let dbPromise;
 
 function connectDB() {
   if (!dbPromise) {
     dbPromise = mongoose.connect(process.env.MONGODB_URI);
   }
-
   return dbPromise;
 }
 
-
 // ==================== HEALTH CHECK ====================
-
-// Used to check whether the deployed API is working
-// Open /api/health in your browser after deployment
 app.get("/api/health", (req, res) => {
   res.json({
     ok: true,
@@ -57,25 +42,27 @@ app.get("/api/health", (req, res) => {
   });
 });
 
+// ==================== DATABASE FOR VERCEL ====================
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error("MongoDB connection failed:", err.message);
+    res.status(500).json({
+      msg: "Database connection failed",
+    });
+  }
+});
 
 // ==================== ROUTES ====================
-
-// Authentication routes
 app.use("/api/auth", require("./routes/auth"));
-
-// Appointment routes
 app.use("/api/appointments", require("./routes/appointments"));
-
-// Staff routes
 app.use("/api/staff", require("./routes/staff"));
 
-
 // ==================== LOCAL SERVER ====================
-
 const PORT = process.env.PORT || 5000;
 
-// When running locally with Node, start the server normally.
-// Vercel will handle the server when deployed.
 if (require.main === module) {
   connectDB()
     .then(() => {
@@ -90,8 +77,5 @@ if (require.main === module) {
     });
 }
 
-
 // ==================== VERCEL ====================
-
-// Export the Express app so Vercel can use it
 module.exports = app;
